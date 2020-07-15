@@ -1,0 +1,3 @@
+g++ -g -c main.cpp LP.cpp Game.cpp LoadImage.cpp Particle.cpp ParticleManager.cpp
+g++ main.o LP.o Game.o LoadImage.o Particle.o ParticleManager.o -o game -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+./game
