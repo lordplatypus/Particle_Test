@@ -13,7 +13,7 @@ Game::~Game()
 {
 }
 
-void Game::Update()
+void Game::Update(float delta_time)
 {
     if (!pressedZ && Keyboard::isKeyPressed(Keyboard::Z))
     {
@@ -70,7 +70,7 @@ void Game::Update()
     if (!Keyboard::isKeyPressed(Keyboard::Left)) pressedLeft = false;
     if (!Keyboard::isKeyPressed(Keyboard::Right)) pressedRight = false;
 
-    pm.Update();
+    pm.Update(delta_time);
 }
 
 void Game::Draw()

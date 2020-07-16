@@ -8,7 +8,7 @@ class ParticleManager
 public:
     ParticleManager();
     ~ParticleManager();
-    void Update();
+    void Update(float delta_time);
     void Draw();
 
     void Test(float x, float y);

@@ -1,24 +1,26 @@
 #ifndef PARTICLE_H_
 #define PARTICLE_H_
-#include <chrono>
+//#include <chrono>
 
 class Particle
 {
 public:
-    Particle(int imageHandle, float x, float y, float vx, float vy, float damp, int lifespan, float angle, float angularVelocity, float startScale, float endScale, int red, int green, int blue, int startAlpha, int endAlpha);
+    Particle(int imageHandle, float x, float y, float vx, float vy, float damp, float lifespan, float angle, float angularVelocity, float startScale, float endScale, int red, int green, int blue, int startAlpha, int endAlpha);
     ~Particle();
-    void Update();
+    void Update(float delta_time);
     void Draw();
+    bool IsDead() const;
 
-    std::chrono::high_resolution_clock::time_point lifespanTest;
-    bool firstInstance = true;
-    
+    // std::chrono::high_resolution_clock::time_point lifespanTest;
+    // bool firstInstance = true;
+
+private:  
     bool isDead = false;
     float x;
     float y;
-    int lifespan = 0;
-    float lifespanInMS;
-    int age = 0;
+    float lifespan = 0;
+    //float lifespanInMS;
+    float age = 0;
     int imageHandle;
     float progressRate = 0;
     float counter = 0.f;

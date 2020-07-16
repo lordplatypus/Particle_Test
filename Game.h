@@ -8,7 +8,7 @@ class Game
 public:
     Game();
     ~Game();
-    void Update();
+    void Update(float delta_time);
     void Draw();
 
 private:
