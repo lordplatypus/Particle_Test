@@ -9,7 +9,7 @@ public:
     ParticleManager();
     ~ParticleManager();
     void Update(float delta_time);
-    void Draw();
+    void Draw() const;
 
     void Test(float x, float y);
     void Explosion(float x, float y);
@@ -21,6 +21,16 @@ public:
     void RightArrowSlash(float x, float y);
 
     void WhiteOut(float x, float y);
+
+    void Foutain(float x, float y);
+    void Shockwave(float x, float y);
+    void Spark(float x, float y, float angle);
+    void Fire(float x, float y);
+    void WormHole(float x, float y);
+    void Charge(float x, float y);
+    void Firework(float x, float y);
+    void Heal(float x, float y);
+    void PickUp(float x, float y);
 
 private:
     std::vector<Particle*> particles;

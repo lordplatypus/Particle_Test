@@ -14,11 +14,14 @@ void LoadImage::Load()
 {
     //Particles
     LP::SetTexture(dot1, "../Particle_Test/Particle/particle_dot_1.png", 32, 32);
+    LP::SetTexture(dot2, "../Particle_Test/Particle/particle_dot_2.png", 64, 64);
+    LP::SetTexture(dot3, "../Particle_Test/Particle/particle_dot_3.png", 64, 64);
     LP::SetTexture(fire, "../Particle_Test/Particle/particle_fire.png", 128, 128);
     LP::SetTexture(square8x8, "../Particle_Test/Particle/particle_square8x8.png", 8, 8);
     LP::SetTexture(line32x32, "../Particle_Test/Particle/Particle_Line32x32.png", 32, 32);
     LP::SetTexture(slash, "../Particle_Test/Particle/particle_slash.png", 256, 64);
     LP::SetTexture(line2, "../Particle_Test/Particle/particle_line_2.png", 128, 64);
+    LP::SetTexture(ring4, "../Particle_Test/Particle/particle_ring_4.png", 128, 256);
 
     LP::SetTexture(upArrowL, "../Particle_Test/Particle/Particle_UpArrowL.png", 8, 8);
     LP::SetTexture(upArrowR, "../Particle_Test/Particle/Particle_UpArrowR.png", 8, 8);

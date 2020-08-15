@@ -11,6 +11,7 @@ public:
     {
         clock_.restart();
     }
+    //Returns time elapsed in seconds(経過時間を返す)
     float GetDeltaTime()
     {
         return clock_.restart().asSeconds();

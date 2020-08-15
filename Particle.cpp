@@ -5,8 +5,10 @@
 using namespace sf;
 using namespace std;
 
-Particle::Particle(int imageHandle_, float x_, float y_, float vx_, float vy_, float damp_, float lifespan_, float angle_, float angularVelocity_, float startScale_, float endScale_, int red_, int green_, int blue_, int startAlpha_, int endAlpha_) :
-imageHandle{imageHandle_}, x{x_}, y{y_}, vx{vx_}, vy{vy_}, damp{damp_}, lifespan{lifespan_}, angle{angle_}, angularVelocity{angularVelocity_}, startScale{startScale_}, endScale{endScale_}, red{red_}, green{green_}, blue{blue_}, startAlpha{startAlpha_}, endAlpha{endAlpha_}
+Particle::Particle(int imageHandle_, float x_, float y_, float vx_, float vy_, float damp_, float lifespan_, float forceX_, float forceY_, 
+    float angle_, float angularVelocity_, float startScale_, float endScale_, int red_, int green_, int blue_, int startAlpha_, int endAlpha_) :
+        imageHandle{imageHandle_}, x{x_}, y{y_}, vx{vx_}, vy{vy_}, damp{damp_}, lifespan{lifespan_}, forceX{forceX_}, forceY{forceY_}, angle{angle_}, angularVelocity{angularVelocity_}, 
+        startScale{startScale_}, endScale{endScale_}, red{red_}, green{green_}, blue{blue_}, startAlpha{startAlpha_}, endAlpha{endAlpha_}
 {}
 
 Particle::~Particle()
@@ -32,8 +34,8 @@ void Particle::Update(float delta_time)
     float progressRate = age / lifespan;
     scale = MyMath::Lerp(startScale, endScale, progressRate);
 
-    // vx += forceX;
-    // vy += forceY;
+    vx += forceX;
+    vy += forceY;
 
     vx *= pow(damp, delta_time*60);
     vy *= pow(damp, delta_time*60);
@@ -46,13 +48,14 @@ void Particle::Update(float delta_time)
 
     alpha = MyMath::Lerp(startAlpha, endAlpha, progressRate);
 
+    LP::SetSpriteScale(imageHandle, scale, scale);
     LP::SetSpriteRotation(imageHandle, angle);
     LP::SetSpriteColor(imageHandle, red, green, blue, alpha);
 }
 
-void Particle::Draw()
+void Particle::Draw() const
 {
     if (isDead) return;
 
-    LP::DrawSprite(x, y, false, scale, scale, imageHandle);
+    LP::DrawSprite(imageHandle, Vector2f(x, y));
 }

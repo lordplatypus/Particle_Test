@@ -9,12 +9,15 @@ public:
     Game();
     ~Game();
     void Update(float delta_time);
-    void Draw();
+    void Draw() const;
 
 private:
     LoadImage lm;
     ParticleManager pm;
+    float timer{0};
+    bool particleLimiter{false};
 
+    //Used to make "on button press" system
     bool pressedZ = true;
     bool pressedX = true;
     bool pressedC = true;
