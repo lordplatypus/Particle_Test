@@ -245,26 +245,6 @@ void ParticleManager::Charge(float x_, float y_)
     LP::SetSpriteOriginCenter(key);
 
     particles.push_back(new Particle(key, x_, y_, vx, vy, 1, lifespan, 0, 0, angle, 0, startScale, 0, 255, 255, 255, 255, 0));
-
-    // float angle = MyRandom.PlusMinus(MyMath.PI);
-    //         float distance = MyRandom.Range(20f, 80f);
-    //         float distanceX = (float)Math.Cos(angle) * distance;
-    //         float distanceY = (float)Math.Sin(angle) * distance;
-    //         int lifeSpan = MyRandom.Range(15, 40);
-
-    //         particles.Add(new Particle() {
-    //             x = x + distanceX,
-    //             y = y + distanceY,
-    //             lifeSpan = lifeSpan,
-    //             imageHandle = Image.particleDot2,
-    //             vx = -distanceX / lifeSpan,
-    //             vy = -distanceY / lifeSpan,
-    //             startScale = MyRandom.Range(0.13f, 0.25f),
-    //             endScale = 0.0f,
-    //             startAlpha = 0,
-    //             endAlpha = 255,
-    //             angle = angle,
-    //         });
 }
 
 void ParticleManager::Firework(float x_, float y_)
@@ -300,137 +280,56 @@ void ParticleManager::Firework(float x_, float y_)
 
 void ParticleManager::Heal(float x_, float y_)
 {
+    int key1 = LP::SetSprite(ring2, Vector2f(x_, y_));
+    LP::SetSpriteOriginCenter(key1);
+    particles.push_back(new Particle(key1, x_, y_, 0, 0, 1, .25f, 0, 0, 0, 0, .1f, .4f, 170, 255, 170, 180, 0));
 
+    int key2 = LP::SetSprite(ring2, Vector2f(x_, y_));
+    LP::SetSpriteOriginCenter(key2);
+    particles.push_back(new Particle(key2, x_, y_, 0, 0, 1, .125f, 0, 0, 0, 0, .2f, .6f, 170, 255, 170, 150, 0));
 
-    // particles.Add(new Particle()
-    //         {
-    //             x = x,
-    //             y = y,
-    //             lifeSpan = 25,
-    //             imageHandle = Image.particleRing2,
-    //             startScale = 0.1f,
-    //             endScale = 0.4f,
-    //             startAlpha = 180,
-    //             endAlpha = 0,
-    //             blendMode = DX.DX_BLENDMODE_ADD,
-    //             red = 170,
-    //             green = 255,
-    //             blue = 170
-    //         });
-    //         particles.Add(new Particle()
-    //         {
-    //             x = x,
-    //             y = y,
-    //             lifeSpan = 12,
-    //             imageHandle = Image.particleRing2,
-    //             startScale = 0.2f,
-    //             endScale = 0.6f,
-    //             startAlpha = 150,
-    //             endAlpha = 0,
-    //             blendMode = DX.DX_BLENDMODE_ADD,
-    //             red = 170,
-    //             green = 255,
-    //             blue = 170
-    //         });
+    for (int i = 0; i < 20; i++)
+    {
+        float newX = x_ + (rand() % 40 - 20);
+        float newY = y_ + (rand() % 40 - 20);
+        float vx = float(rand() % 16 - 8) / 10.0f;
+        float vy = float(rand() % 6 - 3);
+        float lifespan = float(rand() % 35 + 10) / 100.0f;
+        float endScale = float(rand() % 4 + 4) / 10.0f;
+        int sparkleKey = LP::SetSprite(sparkle1, Vector2f(newX, newY));
+        LP::SetSpriteOriginCenter(sparkleKey);
+        particles.push_back(new Particle(sparkleKey, newX, newY, vx, vy, .98f, lifespan, 0, -.06f, 0, 0, .05f, endScale, 170, 255, 170, 255, 0));
+    }
 
-    //         for (int i = 0; i < 20; i++)
-    //         {
-    //             particles.Add(new Particle()
-    //             {
-    //                 x = x + MyRandom.PlusMinus(20),
-    //                 y = y + MyRandom.PlusMinus(20),
-    //                 vx = MyRandom.PlusMinus(0.8f),
-    //                 vy = MyRandom.Range(-0.3f, 0.9f),
-    //                 forceY = -0.06f,
-    //                 damp = 0.98f,
-    //                 lifeSpan = MyRandom.Range(10, 45),
-    //                 imageHandle = Image.particleGlitter1,
-    //                 startScale = 0.05f,
-    //                 endScale = MyRandom.Range(0.4f, 0.8f),
-    //                 startAlpha = 255,
-    //                 endAlpha = 0,
-    //                 blendMode = DX.DX_BLENDMODE_ADD,
-    //                 red = 170,
-    //                 green = 255,
-    //                 blue = 170
-    //             });
-    //         }
-
-    //         for (int i = 0; i < 20; i++)
-    //         {
-    //             particles.Add(
-    //                 new Particle()
-    //                 {
-    //                     x = x + MyRandom.PlusMinus(30),
-    //                     y = y  + 30 + MyRandom.PlusMinus(30),
-    //                     lifeSpan = MyRandom.Range(20, 40),
-    //                     imageHandle = Image.particleLine1,
-    //                     vy = -MyRandom.Range(1f, 5f),
-    //                     vx = 0,
-    //                     forceY = -0.07f,
-    //                     damp = 1f,
-    //                     startScale = 0.3f,
-    //                     endScale = 0.15f,
-    //                     startAlpha = 255,
-    //                     endAlpha = 0,
-    //                     angle = 90f * MyMath.Deg2Rad,
-    //                     blendMode = DX.DX_BLENDMODE_ADD,
-    //                     red = 170,
-    //                     green = 255,
-    //                     blue = 170
-    //                 });
-    //         }
+    for (int i = 0; i < 20; i++)
+    {
+        float newX = x_ + (rand() % 60 - 30);
+        float newY = y_ + 30 + (rand() % 60 - 30);
+        float vy = -float(rand() % 4 + 1);
+        float lifespan = float(rand() % 30 + 30) / 100.0f;
+        int lineKey = LP::SetSprite(line1, Vector2f(newX, newY));
+        LP::SetSpriteOriginCenter(lineKey);
+        particles.push_back(new Particle(lineKey, newX, newY, 0, vy, 1.0f, lifespan, 0, -.07f, 90.0f, 0, .2f, .15f, 170, 255, 170, 255, 0));
+    }
 }
 
 void ParticleManager::PickUp(float x_, float y_)
 {
-
-    // particles.Add(new Particle()
-    //         {
-    //             x = x,
-    //             y = y,
-    //             lifeSpan = 12,
-    //             imageHandle = Image.particleRing2,
-    //             startScale = 0.15f,
-    //             endScale = 0.35f,
-    //             startAlpha = 150,
-    //             endAlpha = 0,
-    //             blendMode = DX.DX_BLENDMODE_ADD,
-    //             red = 170,
-    //             green = 170,
-    //         });
-
-    //         particles.Add(new Particle()
-    //         {
-    //             x = x,
-    //             y = y,
-    //             lifeSpan = 24,
-    //             imageHandle = Image.particleGlitter1,
-    //             startScale = 1f,
-    //             endScale = 0.4f,
-    //             endAlpha = 0,
-    //             blendMode = DX.DX_BLENDMODE_ADD,
-    //             blue = 100,
-    //         });
-
-    //         for (int i = 0; i < 7; i++)
-    //         {
-    //             particles.Add(new Particle()
-    //             {
-    //                 x = x + MyRandom.PlusMinus(10f),
-    //                 y = y + MyRandom.PlusMinus(10f),
-    //                 lifeSpan = MyRandom.Range(20, 50),
-    //                 imageHandle = Image.particleGlitter1,
-    //                 startScale = 0.6f,
-    //                 endScale = 0.1f,
-    //                 startAlpha = 190,
-    //                 endAlpha = 0,
-    //                 blendMode = DX.DX_BLENDMODE_ADD,
-    //                 blue = 100,
-    //                 vx = MyRandom.PlusMinus(2f),
-    //                 vy = MyRandom.Range(-3, -7f),
-    //                 damp = 0.96f,
-    //                 forceY = 0.15f,
-    //             });
-    //         }
+    int ringKey = LP::SetSprite(ring2, Vector2f(x_, y_));
+    LP::SetSpriteOriginCenter(ringKey);
+    int sparkleKey = LP::SetSprite(sparkle1, Vector2f(x_, y_));
+    LP::SetSpriteOriginCenter(sparkleKey);
+    particles.push_back(new Particle(ringKey, x_, y_, 0, 0, 0, .1f, 0, 0, 0, 0, .15f, .35f, 170, 170, 255, 150, 0));
+    particles.push_back(new Particle(sparkleKey, x_, y_, 0, 0, 0, .2f, 0, 0, 0, 0, .7f, .4f, 255, 255, 100, 255, 0));
+    for (int i = 0; i < 7; i++)
+    {
+        float newX = x_ + (rand() % 80 - 40);
+        float newY = y_ + (rand() % 80 - 40);
+        float lifespan = float(rand() % 7 + 3) / 10.0f;
+        float vx = rand() % 40 - 20;
+        float vy = -(rand() % 100 + 50);
+        int key = LP::SetSprite(sparkle1, Vector2f(x_, y_));
+        LP::SetSpriteOriginCenter(key);
+        particles.push_back(new Particle(key, newX, newY, vx, vy, .97f, lifespan, 0, .15f, 0, 0, .3f, .1f, 255, 255, 100, 190, 0));
+    }
 }

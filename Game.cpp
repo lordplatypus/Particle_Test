@@ -32,7 +32,7 @@ void Game::Update(float delta_time)
             }
             if (!pressedC && Keyboard::isKeyPressed(Keyboard::C))
             {
-                pm.SquareExplosion(540, 360);
+                pm.PickUp(540, 360);
                 pressedC = true;
             }
             if (!pressedQ && Keyboard::isKeyPressed(Keyboard::Q))
@@ -52,8 +52,7 @@ void Game::Update(float delta_time)
             }
             if (!pressedA && Keyboard::isKeyPressed(Keyboard::A))
             {
-                float angle = rand() % 360;
-                pm.Spark(540, 360, angle);
+                pm.Heal(540, 360);
                 pressedA = true;
             }
             if (!pressedS && Keyboard::isKeyPressed(Keyboard::S))
