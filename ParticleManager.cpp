@@ -171,7 +171,7 @@ void ParticleManager::Foutain(float x_, float y_)
     float lifespan = rand() % 2 + 2;
     float vx = (rand() % 80) - 40;
     float vy = (rand() % 30 + 170) * -1;
-    particles.push_back(new Particle(LP::SetSprite(dot1, Vector2f(x_, y_)), x_, y_, vx, vy, 1, lifespan, 0, .05f, 0, 0, .5f, 0, 170, 170, 255, 255, 0));
+    particles.push_back(new Particle(LP::SetSprite(dot1, Vector2f(x_, y_)), x_, y_, vx, vy, 1, lifespan, 0, 150.f, 0, 0, .5f, 0, 170, 170, 255, 255, 0));
 }
 
 void ParticleManager::Shockwave(float x_, float y_)
@@ -190,7 +190,7 @@ void ParticleManager::Spark(float x_, float y_, float baseAngle_)
         float lifespan = (rand() % 2) + 2;
         float vx = float(cos(angle) * speed);
         float vy = float(sin(angle) * speed);
-        particles.push_back(new Particle(LP::SetSprite(dot1, Vector2f(x_, y_)), x_, y_, vx, vy, .95f, lifespan, 0, .5f, 0, 0, .1f, .05f, 255, 255, 0, 255, 0));
+        particles.push_back(new Particle(LP::SetSprite(dot1, Vector2f(x_, y_)), x_, y_, vx, vy, .95f, lifespan, 0, 500.f, 0, 0, .1f, .05f, 255, 255, 0, 255, 0));
     }
 }
 
@@ -208,7 +208,7 @@ void ParticleManager::Fire(float x_, float y_)
     float angleVelocity = float((rand() % 24) - 12) / 100.0f;
     int key = LP::SetSprite(fire, Vector2f(x_, y_));
     LP::SetSpriteOriginCenter(key);
-    particles.push_back(new Particle(key, x_, y_, vx, vy, .97f, lifespan, 0, -.07f, angle, angleVelocity, startScale, endScale, 255, 255, 0, startAlpha, 0));
+    particles.push_back(new Particle(key, x_, y_, vx, vy, .97f, lifespan, 0, -300.f, angle, angleVelocity, startScale, endScale, 255, 255, 0, startAlpha, 0));
 }
 
 void ParticleManager::WormHole(float x_, float y_)
@@ -225,7 +225,7 @@ void ParticleManager::WormHole(float x_, float y_)
     int green = rand() % 256;
     int blue = rand() % 256;
     int startAlpha = rand() % 85 + 170;
-    particles.push_back(new Particle(LP::SetSprite(dot1, Vector2f(x_, y_)), x_, y_, vx, vy, .99f, lifespan, 0, .1f, 0, 0, startScale, endScale, 255, 255, 255, startAlpha, 0));
+    particles.push_back(new Particle(LP::SetSprite(dot1, Vector2f(x_, y_)), x_, y_, vx, vy, .99f, lifespan, 0, 500.f, 0, 0, startScale, endScale, 255, 255, 255, startAlpha, 0));
 }
 
 void ParticleManager::Charge(float x_, float y_)
@@ -260,7 +260,7 @@ void ParticleManager::Firework(float x_, float y_)
         float speed = rand() % 300;
         float vx = float(sin(angle) * speed);
         float vy = float(cos(angle) * speed);
-        particles.push_back(new Particle(LP::SetSprite(dot3, Vector2f(x_, y_)), x_, y_, vx, vy, .95f, lifespan, 0, .1f, 0, 0, .2f, 0, red, green, blue, 255, 0));
+        particles.push_back(new Particle(LP::SetSprite(dot3, Vector2f(x_, y_)), x_, y_, vx, vy, .95f, lifespan, 0, 100.f, 0, 0, .2f, 0, red, green, blue, 255, 0));
     }
 
     red = rand() % 256;
@@ -274,7 +274,7 @@ void ParticleManager::Firework(float x_, float y_)
         float speed = rand() % 600;
         float vx = float(sin(angle) * speed);
         float vy = float(cos(angle) * speed);
-        particles.push_back(new Particle(LP::SetSprite(dot3, Vector2f(x_, y_)), x_, y_, vx, vy, .95f, lifespan, 0, .1f, 0, 0, .2f, 0, red, green, blue, 255, 0));
+        particles.push_back(new Particle(LP::SetSprite(dot3, Vector2f(x_, y_)), x_, y_, vx, vy, .95f, lifespan, 0, 100.f, 0, 0, .2f, 0, red, green, blue, 255, 0));
     }
 }
 
@@ -298,7 +298,7 @@ void ParticleManager::Heal(float x_, float y_)
         float endScale = float(rand() % 4 + 4) / 10.0f;
         int sparkleKey = LP::SetSprite(sparkle1, Vector2f(newX, newY));
         LP::SetSpriteOriginCenter(sparkleKey);
-        particles.push_back(new Particle(sparkleKey, newX, newY, vx, vy, .98f, lifespan, 0, -.06f, 0, 0, .05f, endScale, 170, 255, 170, 255, 0));
+        particles.push_back(new Particle(sparkleKey, newX, newY, vx, vy, .98f, lifespan, 0, -60.f, 0, 0, .05f, endScale, 170, 255, 170, 255, 0));
     }
 
     for (int i = 0; i < 20; i++)
@@ -309,7 +309,7 @@ void ParticleManager::Heal(float x_, float y_)
         float lifespan = float(rand() % 30 + 30) / 100.0f;
         int lineKey = LP::SetSprite(line1, Vector2f(newX, newY));
         LP::SetSpriteOriginCenter(lineKey);
-        particles.push_back(new Particle(lineKey, newX, newY, 0, vy, 1.0f, lifespan, 0, -.07f, 90.0f, 0, .2f, .15f, 170, 255, 170, 255, 0));
+        particles.push_back(new Particle(lineKey, newX, newY, 0, vy, 1.0f, lifespan, 0, -70.f, 90.0f, 0, .2f, .15f, 170, 255, 170, 255, 0));
     }
 }
 
@@ -330,6 +330,6 @@ void ParticleManager::PickUp(float x_, float y_)
         float vy = -(rand() % 100 + 50);
         int key = LP::SetSprite(sparkle1, Vector2f(x_, y_));
         LP::SetSpriteOriginCenter(key);
-        particles.push_back(new Particle(key, newX, newY, vx, vy, .97f, lifespan, 0, .15f, 0, 0, .3f, .1f, 255, 255, 100, 190, 0));
+        particles.push_back(new Particle(key, newX, newY, vx, vy, .97f, lifespan, 0, 150.f, 0, 0, .3f, .1f, 255, 255, 100, 190, 0));
     }
 }

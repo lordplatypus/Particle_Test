@@ -34,8 +34,8 @@ void Particle::Update(float delta_time)
     float progressRate = age / lifespan;
     scale = MyMath::Lerp(startScale, endScale, progressRate);
 
-    vx += forceX;
-    vy += forceY;
+    vx += forceX * delta_time;
+    vy += forceY * delta_time;
 
     vx *= pow(damp, delta_time*60);
     vy *= pow(damp, delta_time*60);
