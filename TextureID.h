@@ -23,6 +23,8 @@ enum
     ring2,
     ring3,
     ring4,
+    smoke,
+    steam,
 
     upArrowL,
     upArrowR,

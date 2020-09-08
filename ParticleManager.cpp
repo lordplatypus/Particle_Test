@@ -77,14 +77,34 @@ void ParticleManager::Test(float x_, float y_)
 
 void ParticleManager::Explosion(float x_, float y_)
 {
-    for (int i = 0; i < 70; i++)
+    for (int i = 0; i < 50; i++)
     {
-                float angle = (rand() % 360) * (M_PI / 180);
-                float speed = rand() % 8;
-                float vx = (float)cos(angle) * speed;
-                float vy = (float)sin(angle) * speed;
+        int key = LP::SetSprite(smoke, Vector2f(x_, y_));
+        LP::SetSpriteOriginCenter(key);
+        float lifespan = (rand() % 5 + 5) / 10.0f;
+        float angle = (rand() % 360) * (M_PI / 180);
+        float speed = rand() % 100 + 30;
+        float vx = (float)cos(angle) * speed;
+        float vy = (float)sin(angle) * speed;
+        float endScale = (rand() % 5 + 1) / 10.0f;
+        float startAlpha = rand() % 256;
 
-                particles.push_back(new Particle(LP::SetSprite(fire, Vector2f(x_, y_)), x_, y_, vx, vy, 1, 10, 0, 0, 0, 0, .1f, .5f, 255, 255, 255, 255, 255));
+        particles.push_back(new Particle(key, x_, y_, vx, vy, 1, lifespan, 0, -150.0f, 0, 0, .1f, endScale, 255, 255, 255, startAlpha, 0));
+    }
+
+    for (int i = 0; i < 100; i++)
+    {
+        int key = LP::SetSprite(fire, Vector2f(x_, y_));
+        LP::SetSpriteOriginCenter(key);
+        float lifespan = (rand() % 5 + 1) / 10.0f;
+        float angle = (rand() % 360) * (M_PI / 180);
+        float speed = rand() % 100 + 30;
+        float vx = (float)cos(angle) * speed;
+        float vy = (float)sin(angle) * speed;
+        float endScale = (rand() % 5 + 1) / 10.0f;
+        float startAlpha = rand() % 256;
+
+        particles.push_back(new Particle(key, x_, y_, vx, vy, 1, lifespan, 0, 0, 0, 0, .1f, endScale, 255, 255, 255, startAlpha, 0));
     }
 }
 
@@ -331,5 +351,66 @@ void ParticleManager::PickUp(float x_, float y_)
         int key = LP::SetSprite(sparkle1, Vector2f(x_, y_));
         LP::SetSpriteOriginCenter(key);
         particles.push_back(new Particle(key, newX, newY, vx, vy, .97f, lifespan, 0, 150.f, 0, 0, .3f, .1f, 255, 255, 100, 190, 0));
+    }
+}
+
+void ParticleManager::SmokeScreen(float x_, float y_)
+{
+    for (int i = 0; i < 100; i++)
+    {
+        int key = LP::SetSprite(smoke, Vector2f(x_, y_));
+        LP::SetSpriteOriginCenter(key);
+        float lifespan = (rand() % 10) / 10.0f;
+        float vx = rand() % 200 - 100;
+        float vy = -(rand() % 200);
+        float angle = (rand() % 360) * (M_PI / 180);
+        float startScale = (rand() % 5 + 5) / 10.0f;
+        float endScale = (rand() % 5) / 10.0f;
+        float startAlpha = rand() % 256;
+        particles.push_back(new Particle(key, x_, y_, vx, vy, .98f, lifespan, 0, 150.f, angle, 0, startScale, endScale, 255, 255, 255, startAlpha, 0));
+    }
+}
+
+void ParticleManager::EnemyDeath(float x_, float y_)
+{
+    Explosion(x_, y_);
+    for (int i = 0; i < 100; i++)
+    {
+        int red = 0;
+        int green = 0;
+        int blue = 0;
+        int color = rand() & 3;
+        switch (color)
+        {
+        case 0:
+            red = 200;
+            green = 0;
+            blue = 0;
+            break;
+
+        case 1:
+            red = 50;
+            green = 50;
+            blue = 50;
+            break;
+
+        case 2:
+            red = 150;
+            green = 150;
+            blue = 150;
+            break;
+        
+        default:
+            break;
+        }
+
+        int key = LP::SetSprite(square8x8, Vector2f(x_, y_));
+        LP::SetSpriteOriginCenter(key);
+        float lifespan = (rand() % 3 + 1);
+        float angle = (rand() % 360) * (M_PI / 180);
+        float speed = rand() % 200 + 100;
+        float vx = (float)cos(angle) * speed;
+        float vy = (float)sin(angle) * speed;
+        particles.push_back(new Particle(key, x_, y_, vx, vy, .95f, lifespan, 0, 0, 0, 0, .5f, .5f, red, green, blue, 255, 0));
     }
 }

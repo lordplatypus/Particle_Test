@@ -37,52 +37,45 @@ void Game::Update(float delta_time)
             }
             if (!pressedQ && Keyboard::isKeyPressed(Keyboard::Q))
             {
-                pm.WhiteOut(0, 0);
+                pm.SmokeScreen(540, 360);
                 pressedQ = true;
             }
             if (!pressedW && Keyboard::isKeyPressed(Keyboard::W))
             {
-                pm.Foutain(540, 360);
                 //pressedW = true;
             }
             if (!pressedE && Keyboard::isKeyPressed(Keyboard::E))
             {
-                pm.Shockwave(540, 360);
                 pressedE = true;
             }
             if (!pressedA && Keyboard::isKeyPressed(Keyboard::A))
             {
-                pm.Heal(540, 360);
+                pm.Explosion(540, 360);
                 pressedA = true;
             }
             if (!pressedS && Keyboard::isKeyPressed(Keyboard::S))
             {
-                pm.Fire(540, 360);
-                //pressedS = true;
+                pm.EnemyDeath(540, 360);
+                pressedS = true;
             }
             if (!pressedD && Keyboard::isKeyPressed(Keyboard::D))
             {
-                pm.WormHole(540, 360);
                 //pressedD = true;
             }
             if (!pressedUp && Keyboard::isKeyPressed(Keyboard::Up))
             {
-                pm.UpArrowSlash(540, 360);
                 pressedUp = true;
             }
             if (!pressedDown && Keyboard::isKeyPressed(Keyboard::Down))
             {
-                pm.DownArrowSlash(540, 360);
                 pressedDown = true;
             }
             if (!pressedLeft && Keyboard::isKeyPressed(Keyboard::Left))
             {
-                pm.LeftArrowSlash(540, 360);
                 pressedLeft = true;
             }
             if (!pressedRight && Keyboard::isKeyPressed(Keyboard::Right))
             {
-                pm.RightArrowSlash(540, 360);
                 pressedRight = true;
             }
         }

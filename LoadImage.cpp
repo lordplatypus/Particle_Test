@@ -32,6 +32,9 @@ void LoadImage::Load()
     LP::SetTexture(ring2, "./Particle/particle_ring_2.png", 256, 256);
     LP::SetTexture(ring3, "./Particle/particle_ring_3.png", 256, 256);
     LP::SetTexture(ring4, "./Particle/particle_ring_4.png", 128, 256);
+    LP::SetTexture(ring4, "./Particle/particle_ring_4.png", 128, 256);
+    LP::SetTexture(smoke, "./Particle/particle_smoke.png", 128, 128);
+    LP::SetTexture(steam, "./Particle/particle_steam.png", 128, 128);
 
     LP::SetTexture(upArrowL, "./Particle/Particle_UpArrowL.png", 8, 8);
     LP::SetTexture(upArrowR, "./Particle/Particle_UpArrowR.png", 8, 8);

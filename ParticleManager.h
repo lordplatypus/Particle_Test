@@ -32,6 +32,9 @@ public:
     void Heal(float x, float y);
     void PickUp(float x, float y);
 
+    void SmokeScreen(float x, float y);
+    void EnemyDeath(float x, float y);
+
 private:
     std::vector<Particle*> particles;
 };
